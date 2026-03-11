@@ -93,14 +93,24 @@ function openApp(appName) {
   const offsetX = (windowId % 8) * 30 + 60;
   const offsetY = (windowId % 6) * 30 + 40;
 
+  const isMobile = window.innerWidth <= 768;
+
   const win = document.createElement('div');
   win.className = 'app-window';
   win.id = id;
   win.dataset.app = appName;
-  win.style.width = def.width + 'px';
-  win.style.height = def.height + 'px';
-  win.style.left = offsetX + 'px';
-  win.style.top = offsetY + 'px';
+
+  if (isMobile) {
+    // On mobile/small screens, always open maximized
+    win.classList.add('maximized');
+  } else {
+    const maxW = Math.min(def.width, window.innerWidth - 40);
+    const maxH = Math.min(def.height, window.innerHeight - 88);
+    win.style.width = maxW + 'px';
+    win.style.height = maxH + 'px';
+    win.style.left = Math.min(offsetX, window.innerWidth - maxW - 20) + 'px';
+    win.style.top = Math.min(offsetY, window.innerHeight - maxH - 68) + 'px';
+  }
 
   win.innerHTML = `
     <div class="window-titlebar" onmousedown="startDrag(event, '${id}')">
@@ -124,7 +134,7 @@ function openApp(appName) {
   `;
 
   document.getElementById('windows-container').appendChild(win);
-  activeWindows[id] = { appName, minimized: false, maximized: false };
+  activeWindows[id] = { appName, minimized: false, maximized: isMobile };
   focusWindow(id);
   updateTaskbarApps();
 
@@ -298,7 +308,7 @@ function onResize(e) {
   const dy = e.clientY - resizeState.startY;
   const dir = resizeState.dir;
   let { origLeft, origTop, origWidth, origHeight } = resizeState;
-  const minW = 400, minH = 300;
+  const minW = Math.min(400, window.innerWidth), minH = Math.min(300, window.innerHeight - 48);
 
   if (dir.includes('e')) { win.style.width = Math.max(minW, origWidth + dx) + 'px'; }
   if (dir.includes('w')) {

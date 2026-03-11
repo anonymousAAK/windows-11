@@ -265,8 +265,8 @@ body {
 
 .app-window {
   position: absolute;
-  min-width: 400px;
-  min-height: 300px;
+  min-width: min(400px, 100vw);
+  min-height: min(300px, 100vh - 48px);
   background: var(--window-bg);
   border-radius: 8px;
   overflow: hidden;
@@ -1335,3 +1335,137 @@ body {
 .search-result-item:hover { background: var(--hover-bg); }
 .search-result-item i { font-size: 18px; width: 24px; text-align: center; }
 .search-result-item span { font-size: 13px; color: var(--text-primary); }
+
+/* ============== RESPONSIVE / MOBILE ============== */
+@media (max-width: 768px) {
+  /* Windows always maximized on mobile */
+  .app-window {
+    min-width: 100% !important;
+    min-height: 100% !important;
+  }
+  .app-window.maximized {
+    width: 100% !important;
+    height: calc(100vh - 48px) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  /* Start menu full width */
+  .start-menu {
+    width: calc(100vw - 16px);
+    left: 8px;
+    right: 8px;
+    transform: none;
+    bottom: 54px;
+    max-height: calc(100vh - 70px);
+  }
+  @keyframes startOpen {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .start-menu-inner {
+    padding: 20px 16px 0;
+  }
+  .start-pinned-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Search overlay full width */
+  #search-overlay {
+    width: calc(100vw - 16px);
+    left: 8px;
+    right: 8px;
+    transform: none;
+    bottom: 54px;
+  }
+
+  /* Notification center full width */
+  .notification-center {
+    width: calc(100vw - 16px);
+    left: 8px;
+    right: 8px;
+    bottom: 54px;
+  }
+
+  /* Widget panel full width */
+  .widget-panel {
+    width: 100%;
+  }
+
+  /* Taskbar adjustments */
+  .taskbar-center {
+    position: static;
+    transform: none;
+    flex: 1;
+    justify-content: center;
+  }
+  .taskbar-left { display: none; }
+  .systray-btn { display: none; }
+  .systray { gap: 4px; padding: 4px 4px; }
+  .systray i { font-size: 11px; }
+  .taskbar-clock { padding: 4px 4px; }
+  .clock-time { font-size: 11px; }
+  .clock-date { font-size: 10px; }
+  .taskbar-btn { width: 36px; height: 36px; font-size: 14px; }
+
+  /* Desktop icons smaller grid */
+  .desktop-area {
+    grid-template-columns: repeat(auto-fill, 76px);
+    grid-template-rows: repeat(auto-fill, 90px);
+    padding: 8px;
+  }
+  .desktop-icon { width: 70px; }
+  .desktop-icon-img i { font-size: 26px !important; }
+  .desktop-icon span { font-size: 10px; }
+
+  /* Lock screen */
+  .lock-time { font-size: 60px; }
+  .lock-date { font-size: 16px; }
+
+  /* App-specific responsive */
+  .fe-sidebar { display: none; }
+  .fe-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
+  .fe-path { font-size: 11px; }
+
+  .settings-nav { width: 160px; }
+  .settings-nav-item { padding: 8px 10px; font-size: 12px; gap: 8px; }
+  .settings-content { padding: 16px; }
+  .settings-title { font-size: 22px; }
+
+  .edge-search-box { width: 90%; max-width: 400px; }
+  .edge-shortcuts { gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .edge-shortcut { width: 64px; }
+  .edge-logo { font-size: 48px; }
+
+  .terminal-body { font-size: 12px; padding: 8px; }
+  .terminal-prompt { font-size: 11px; }
+  .terminal-input { font-size: 12px; }
+
+  .weather-app { padding: 20px; }
+  .weather-app-temp { font-size: 48px; }
+  .weather-app-icon { font-size: 56px; }
+  .weather-app-details { gap: 16px; flex-wrap: wrap; }
+
+  .clock-app-face { font-size: 48px; }
+
+  .store-header { padding: 16px; }
+  .store-grid { padding: 16px; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+
+  .photos-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+
+  .paint-color-btn { width: 20px; height: 20px; }
+  .paint-toolbar { gap: 4px; padding: 4px 8px; }
+}
+
+@media (max-width: 480px) {
+  .start-pinned-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .settings-nav { width: 50px; }
+  .settings-nav-item span { display: none; }
+  .settings-nav-item { justify-content: center; padding: 10px; }
+
+  .taskbar-btn { width: 32px; height: 32px; font-size: 13px; }
+  .edge-nav-btn { display: none; }
+  .edge-toolbar { gap: 4px; padding: 4px 8px; }
+}
