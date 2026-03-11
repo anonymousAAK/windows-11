@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows 11</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- BOOT SCREEN -->
+  <div id="boot-screen" class="screen active">
+    <div class="boot-logo">
+      <div class="win-logo">
+        <div class="win-block b1"></div>
+        <div class="win-block b2"></div>
+        <div class="win-block b3"></div>
+        <div class="win-block b4"></div>
+      </div>
+    </div>
+    <div class="boot-spinner">
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+    </div>
+  </div>
+
+  <!-- LOCK SCREEN -->
+  <div id="lock-screen" class="screen">
+    <div class="lock-bg"></div>
+    <div class="lock-content">
+      <div class="lock-time" id="lock-time">12:00</div>
+      <div class="lock-date" id="lock-date">Wednesday, March 11</div>
+    </div>
+    <div class="lock-bottom-hint">Click anywhere or press any key to unlock</div>
+  </div>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="screen">
+    <div class="login-bg"></div>
+    <div class="login-content">
+      <div class="login-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="login-username">User</div>
+      <div class="login-password-row">
+        <input type="password" id="login-password" class="login-input" placeholder="PIN (just press Enter)" autofocus>
+        <button class="login-btn" id="login-btn"><i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="login-options">
+        <span>Sign-in options</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div id="desktop" class="screen">
+    <div class="desktop-area" id="desktop-area">
+      <!-- Desktop Icons -->
+      <div class="desktop-icon" data-app="fileexplorer" ondblclick="openApp('fileexplorer')">
+        <div class="desktop-icon-img"><i class="fas fa-folder" style="color:#FFB900;font-size:32px"></i></div>
+        <span>File Explorer</span>
+      </div>
+      <div class="desktop-icon" data-app="edge" ondblclick="openApp('edge')">
+        <div class="desktop-icon-img"><i class="fas fa-globe" style="color:#0078D4;font-size:32px"></i></div>
+        <span>Edge</span>
+      </div>
+      <div class="desktop-icon" data-app="notepad" ondblclick="openApp('notepad')">
+        <div class="desktop-icon-img"><i class="fas fa-file-alt" style="color:#5B9BD5;font-size:32px"></i></div>
+        <span>Notepad</span>
+      </div>
+      <div class="desktop-icon" data-app="terminal" ondblclick="openApp('terminal')">
+        <div class="desktop-icon-img"><i class="fas fa-terminal" style="color:#ccc;font-size:32px"></i></div>
+        <span>Terminal</span>
+      </div>
+      <div class="desktop-icon" data-app="calculator" ondblclick="openApp('calculator')">
+        <div class="desktop-icon-img"><i class="fas fa-calculator" style="color:#7fba00;font-size:32px"></i></div>
+        <span>Calculator</span>
+      </div>
+      <div class="desktop-icon" data-app="settings" ondblclick="openApp('settings')">
+        <div class="desktop-icon-img"><i class="fas fa-cog" style="color:#aaa;font-size:32px"></i></div>
+        <span>Settings</span>
+      </div>
+      <div class="desktop-icon" data-app="photos" ondblclick="openApp('photos')">
+        <div class="desktop-icon-img"><i class="fas fa-image" style="color:#ff6f61;font-size:32px"></i></div>
+        <span>Photos</span>
+      </div>
+      <div class="desktop-icon" data-app="store" ondblclick="openApp('store')">
+        <div class="desktop-icon-img"><i class="fas fa-shopping-bag" style="color:#0078D4;font-size:32px"></i></div>
+        <span>Store</span>
+      </div>
+    </div>
+
+    <!-- Windows container -->
+    <div id="windows-container"></div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="start-menu hidden">
+      <div class="start-menu-inner">
+        <div class="start-search">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Type here to search" id="start-search-input">
+        </div>
+        <div class="start-section">
+          <div class="start-section-header">
+            <span>Pinned</span>
+            <button class="start-all-btn">All apps <i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="start-pinned-grid" id="start-pinned-grid">
+            <div class="start-app" onclick="openApp('edge')"><i class="fas fa-globe" style="color:#0078D4"></i><span>Edge</span></div>
+            <div class="start-app" onclick="openApp('fileexplorer')"><i class="fas fa-folder" style="color:#FFB900"></i><span>Explorer</span></div>
+            <div class="start-app" onclick="openApp('notepad')"><i class="fas fa-file-alt" style="color:#5B9BD5"></i><span>Notepad</span></div>
+            <div class="start-app" onclick="openApp('terminal')"><i class="fas fa-terminal" style="color:#ccc"></i><span>Terminal</span></div>
+            <div class="start-app" onclick="openApp('calculator')"><i class="fas fa-calculator" style="color:#7fba00"></i><span>Calculator</span></div>
+            <div class="start-app" onclick="openApp('settings')"><i class="fas fa-cog" style="color:#aaa"></i><span>Settings</span></div>
+            <div class="start-app" onclick="openApp('photos')"><i class="fas fa-image" style="color:#ff6f61"></i><span>Photos</span></div>
+            <div class="start-app" onclick="openApp('store')"><i class="fas fa-shopping-bag" style="color:#0078D4"></i><span>Store</span></div>
+            <div class="start-app" onclick="openApp('paint')"><i class="fas fa-palette" style="color:#E74856"></i><span>Paint</span></div>
+            <div class="start-app" onclick="openApp('weather')"><i class="fas fa-cloud-sun" style="color:#68B9E6"></i><span>Weather</span></div>
+            <div class="start-app" onclick="openApp('clock')"><i class="fas fa-clock" style="color:#FFB900"></i><span>Clock</span></div>
+            <div class="start-app" onclick="openApp('camera')"><i class="fas fa-camera" style="color:#888"></i><span>Camera</span></div>
+          </div>
+        </div>
+        <div class="start-section">
+          <div class="start-section-header">
+            <span>Recommended</span>
+            <button class="start-all-btn">More <i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="start-recommended">
+            <div class="start-rec-item" onclick="openApp('notepad')">
+              <i class="fas fa-file-alt" style="color:#5B9BD5"></i>
+              <div><span class="rec-name">Welcome.txt</span><span class="rec-info">Recently added</span></div>
+            </div>
+            <div class="start-rec-item" onclick="openApp('photos')">
+              <i class="fas fa-image" style="color:#ff6f61"></i>
+              <div><span class="rec-name">Screenshot.png</span><span class="rec-info">Today</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="start-bottom">
+          <div class="start-user"><i class="fas fa-user-circle"></i><span>User</span></div>
+          <button class="start-power" onclick="shutDown()"><i class="fas fa-power-off"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Widget Panel -->
+    <div id="widget-panel" class="widget-panel hidden">
+      <div class="widget-card">
+        <h3><i class="fas fa-cloud-sun"></i> Weather</h3>
+        <div class="widget-weather">
+          <div class="weather-temp">72°F</div>
+          <div class="weather-desc">Partly Cloudy</div>
+          <div class="weather-location">Redmond, WA</div>
+        </div>
+      </div>
+      <div class="widget-card">
+        <h3><i class="fas fa-newspaper"></i> News</h3>
+        <div class="widget-news-item">Tech industry continues to innovate...</div>
+        <div class="widget-news-item">Local events this weekend...</div>
+      </div>
+      <div class="widget-card">
+        <h3><i class="fas fa-calendar"></i> Calendar</h3>
+        <div id="widget-calendar-date">March 11, 2026</div>
+        <div class="widget-cal-event">No upcoming events</div>
+      </div>
+    </div>
+
+    <!-- Desktop Context Menu -->
+    <div id="context-menu" class="context-menu hidden">
+      <div class="ctx-item" onclick="changeWallpaper()"><i class="fas fa-image"></i> Change wallpaper</div>
+      <div class="ctx-item" onclick="openApp('settings')"><i class="fas fa-desktop"></i> Display settings</div>
+      <div class="ctx-separator"></div>
+      <div class="ctx-item" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Toggle dark mode</div>
+      <div class="ctx-item" onclick="refreshDesktop()"><i class="fas fa-sync-alt"></i> Refresh</div>
+      <div class="ctx-separator"></div>
+      <div class="ctx-item" onclick="openApp('terminal')"><i class="fas fa-terminal"></i> Open Terminal</div>
+      <div class="ctx-item" onclick="openApp('notepad')"><i class="fas fa-file-alt"></i> New Text Document</div>
+    </div>
+
+    <!-- Notification Center -->
+    <div id="notification-center" class="notification-center hidden">
+      <div class="notif-header">
+        <span>Notifications</span>
+        <button onclick="clearNotifications()">Clear all</button>
+      </div>
+      <div class="notif-list" id="notif-list">
+        <div class="notif-item">
+          <div class="notif-title">Welcome!</div>
+          <div class="notif-body">Your Windows 11 Web Experience is ready.</div>
+          <div class="notif-time">Just now</div>
+        </div>
+      </div>
+      <div class="quick-settings">
+        <div class="qs-btn active" onclick="this.classList.toggle('active')"><i class="fas fa-wifi"></i><span>Wi-Fi</span></div>
+        <div class="qs-btn active" onclick="this.classList.toggle('active')"><i class="fas fa-bluetooth-b"></i><span>Bluetooth</span></div>
+        <div class="qs-btn" onclick="this.classList.toggle('active')"><i class="fas fa-plane"></i><span>Airplane</span></div>
+        <div class="qs-btn" onclick="toggleDarkMode(); this.classList.toggle('active')"><i class="fas fa-moon"></i><span>Night light</span></div>
+        <div class="qs-btn" onclick="this.classList.toggle('active')"><i class="fas fa-map-marker-alt"></i><span>Location</span></div>
+        <div class="qs-btn active" onclick="this.classList.toggle('active')"><i class="fas fa-volume-up"></i><span>Sound</span></div>
+      </div>
+      <div class="qs-sliders">
+        <div class="qs-slider-row"><i class="fas fa-sun"></i><input type="range" min="20" max="100" value="80" id="brightness-slider"></div>
+        <div class="qs-slider-row"><i class="fas fa-volume-up"></i><input type="range" min="0" max="100" value="65" id="volume-slider"></div>
+      </div>
+    </div>
+
+    <!-- TASKBAR -->
+    <div class="taskbar" id="taskbar">
+      <div class="taskbar-left">
+        <button class="taskbar-btn widget-btn" onclick="toggleWidgets()" title="Widgets">
+          <i class="fas fa-th-large"></i>
+        </button>
+      </div>
+      <div class="taskbar-center">
+        <button class="taskbar-btn start-btn" onclick="toggleStartMenu()" title="Start">
+          <div class="win-logo-small">
+            <div class="win-block-sm b1"></div>
+            <div class="win-block-sm b2"></div>
+            <div class="win-block-sm b3"></div>
+            <div class="win-block-sm b4"></div>
+          </div>
+        </button>
+        <button class="taskbar-btn search-btn" onclick="toggleSearch()" title="Search">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="taskbar-btn" onclick="openApp('fileexplorer')" title="File Explorer">
+          <i class="fas fa-folder" style="color:#FFB900"></i>
+        </button>
+        <button class="taskbar-btn" onclick="openApp('edge')" title="Edge">
+          <i class="fas fa-globe" style="color:#0078D4"></i>
+        </button>
+        <button class="taskbar-btn" onclick="openApp('terminal')" title="Terminal">
+          <i class="fas fa-terminal"></i>
+        </button>
+        <button class="taskbar-btn" onclick="openApp('store')" title="Store">
+          <i class="fas fa-shopping-bag" style="color:#0078D4"></i>
+        </button>
+        <!-- Dynamic task buttons inserted here -->
+        <div id="taskbar-apps"></div>
+      </div>
+      <div class="taskbar-right">
+        <button class="taskbar-btn systray-btn" onclick="toggleNotifCenter()">
+          <i class="fas fa-chevron-up" style="font-size:10px"></i>
+        </button>
+        <div class="systray" onclick="toggleNotifCenter()">
+          <i class="fas fa-wifi"></i>
+          <i class="fas fa-volume-up"></i>
+          <i class="fas fa-battery-three-quarters"></i>
+        </div>
+        <div class="taskbar-clock" onclick="toggleNotifCenter()">
+          <div class="clock-time" id="taskbar-time">12:00</div>
+          <div class="clock-date" id="taskbar-date">3/11/2026</div>
+        </div>
+        <button class="taskbar-btn show-desktop-btn" onclick="showDesktop()" title="Show desktop">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHUTDOWN SCREEN -->
+  <div id="shutdown-screen" class="screen">
+    <div class="shutdown-content">
+      <div class="shutdown-spinner"></div>
+      <div class="shutdown-text">Shutting down...</div>
+    </div>
+  </div>
+
+  <script src="apps.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
