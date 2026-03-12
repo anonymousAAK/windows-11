@@ -1,0 +1,119 @@
+/* ===== BOOT SCREEN ===== */
+#boot-screen {
+  background: #000; align-items: center; justify-content: center;
+  flex-direction: column; z-index: 10001;
+}
+.win-logo { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; width: 80px; height: 80px; }
+.win-block { border-radius: 2px; transition: opacity 0.3s; }
+.b1 { background: #f25022; } .b2 { background: #7fba00; }
+.b3 { background: #00a4ef; } .b4 { background: #ffb900; }
+.boot-spinner { margin-top: 48px; display: flex; gap: 8px; }
+.spinner-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #fff;
+  animation: bootSpin 1.4s ease-in-out infinite;
+}
+.spinner-dot:nth-child(2) { animation-delay: .12s; }
+.spinner-dot:nth-child(3) { animation-delay: .24s; }
+.spinner-dot:nth-child(4) { animation-delay: .36s; }
+.spinner-dot:nth-child(5) { animation-delay: .48s; }
+
+/* ===== LOCK SCREEN ===== */
+#lock-screen {
+  flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10000; background: #000;
+}
+.lock-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #0f0c29, #302b63, #24243e);
+  z-index: 0;
+}
+.lock-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(100,80,200,.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(0,120,212,.2) 0%, transparent 50%);
+}
+.lock-content { z-index: 1; text-align: center; color: #fff; animation: fadeIn 1s ease; }
+.lock-time { font-size: 96px; font-weight: 200; letter-spacing: -4px; line-height: 1; }
+.lock-date { font-size: 20px; font-weight: 300; margin-top: 8px; opacity: .85; }
+.lock-bottom-hint {
+  position: absolute; bottom: 48px; z-index: 1;
+  color: rgba(255,255,255,.5); font-size: 13px;
+  animation: fadeIn 2s ease;
+}
+
+/* ===== LOGIN SCREEN ===== */
+#login-screen {
+  flex-direction: column; align-items: center; justify-content: center;
+  z-index: 9999; background: #000;
+}
+.login-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #0f0c29, #302b63, #24243e);
+}
+.login-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(100,80,200,.3) 0%, transparent 60%);
+}
+.login-content {
+  z-index: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 14px; color: #fff;
+  animation: slideUp 0.4s ease;
+}
+.login-avatar {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center; font-size: 52px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.3);
+}
+.login-username { font-size: 24px; font-weight: 500; margin: 4px 0; }
+.login-password-row { display: flex; gap: 6px; }
+.login-input {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25);
+  border-radius: var(--radius-sm); padding: 10px 16px; color: #fff;
+  font-size: 14px; width: 240px; outline: none; transition: border-color var(--transition);
+  backdrop-filter: blur(10px);
+}
+.login-input:focus { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.15); }
+.login-btn {
+  background: var(--accent); border: none; border-radius: var(--radius-sm);
+  color: #fff; width: 44px; font-size: 16px;
+  transition: background var(--transition), transform 0.1s;
+}
+.login-btn:hover { background: var(--accent-dark); }
+.login-btn:active { transform: scale(0.95); }
+.login-options { font-size: 13px; color: rgba(255,255,255,.5); cursor: pointer; }
+.login-options:hover { color: rgba(255,255,255,.8); }
+
+/* ===== BSOD ===== */
+#bsod-screen { background: #0078d7; flex-direction: column; padding: 10%; color: #fff; z-index: 10002; }
+.bsod-sad { font-size: 130px; font-weight: 200; margin-bottom: 24px; }
+.bsod-main { font-size: 32px; margin-bottom: 24px; line-height: 1.3; max-width: 700px; }
+.bsod-percent { font-size: 22px; margin-bottom: 20px; }
+.bsod-stop { font-size: 14px; opacity: .8; margin-bottom: 20px; }
+.bsod-qr { margin-top: 24px; opacity: .7; font-size: 80px; }
+
+/* ===== CTRL+ALT+DEL ===== */
+#cad-screen { align-items: center; justify-content: center; flex-direction: column; z-index: 10000; }
+.cad-bg { position: absolute; inset: 0; background: rgba(0,0,0,.88); backdrop-filter: blur(8px); }
+.cad-content { z-index: 1; display: flex; flex-direction: column; gap: 4px; animation: scaleIn 0.2s ease; }
+.cad-option {
+  color: #fff; padding: 18px 80px; font-size: 18px; cursor: pointer;
+  border-radius: var(--radius-sm); display: flex; align-items: center; gap: 16px;
+  transition: background var(--transition);
+}
+.cad-option:hover { background: rgba(255,255,255,.1); }
+.cad-cancel {
+  color: rgba(255,255,255,.6); text-align: center; margin-top: 32px;
+  cursor: pointer; font-size: 14px; transition: color var(--transition);
+}
+.cad-cancel:hover { color: #fff; }
+
+/* ===== SHUTDOWN ===== */
+#shutdown-screen { background: #000; align-items: center; justify-content: center; flex-direction: column; color: #fff; z-index: 10001; }
+.shutdown-spinner {
+  width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.15);
+  border-top-color: #fff; border-radius: 50%;
+  animation: spin 0.9s linear infinite; margin-bottom: 24px;
+}
+.shutdown-text { font-size: 18px; font-weight: 300; }
+@keyframes spin { to { transform: rotate(360deg); } }

@@ -1,0 +1,79 @@
+/* ===== TOAST NOTIFICATIONS ===== */
+.toast-container {
+  position: fixed; top: 16px; right: 16px;
+  z-index: 9500; display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+}
+.toast {
+  background: var(--menu-bg); backdrop-filter: blur(24px);
+  border: 1px solid var(--border); border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 14px 18px;
+  box-shadow: var(--shadow-lg); min-width: 300px; max-width: 380px;
+  pointer-events: auto; animation: toastIn 0.3s ease; color: var(--text);
+  position: relative;
+}
+.toast.out { animation: toastOut 0.3s ease forwards; }
+.toast-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.toast-app-icon { font-size: 14px; }
+.toast-title { font-size: 13px; font-weight: 600; flex: 1; }
+.toast-close {
+  background: transparent; border: none; color: var(--text2);
+  cursor: pointer; font-size: 12px; padding: 2px 4px;
+  border-radius: 3px; transition: background var(--transition);
+}
+.toast-close:hover { background: var(--hover); color: var(--text); }
+.toast-body { font-size: 12px; color: var(--text2); }
+.toast-actions { display: flex; gap: 8px; margin-top: 8px; }
+.toast-actions button {
+  background: var(--hover); border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 4px; font-size: 11px;
+  color: var(--text); cursor: pointer; transition: background var(--transition);
+}
+.toast-actions button:hover { background: var(--active); }
+.toast-progress {
+  position: absolute; bottom: 0; left: 0; height: 2px;
+  background: var(--accent); border-radius: 0 0 var(--radius) var(--radius);
+  width: 100%; transform-origin: left;
+  animation: toastProgress 4.5s linear forwards;
+}
+@keyframes toastProgress { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* ===== NOTIFICATION CENTER ===== */
+.notification-center {
+  position: absolute; bottom: 56px; right: 8px; width: 360px;
+  max-height: calc(100vh - 80px); background: var(--menu-bg);
+  backdrop-filter: blur(32px); border: 1px solid var(--glass-border);
+  border-radius: 12px; box-shadow: var(--shadow-lg); z-index: 600;
+  padding: 16px; animation: slideUp 0.2s ease; overflow-y: auto;
+}
+.notification-center.hidden { display: none; }
+.notif-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.notif-header span { font-size: 14px; font-weight: 600; color: var(--text); }
+.notif-header button { background: transparent; border: none; color: var(--accent); font-size: 12px; cursor: pointer; }
+.notif-header button:hover { text-decoration: underline; }
+.notif-list { margin-bottom: 14px; max-height: 200px; overflow-y: auto; }
+.notif-item {
+  padding: 10px 12px; border-radius: 7px; margin-bottom: 5px;
+  background: var(--card-bg); border: 1px solid var(--border);
+  cursor: pointer; transition: background var(--transition);
+}
+.notif-item:hover { background: var(--hover); }
+.notif-item-title { font-size: 12px; font-weight: 600; color: var(--text); }
+.notif-item-body { font-size: 11px; color: var(--text2); margin-top: 3px; }
+.notif-item-time { font-size: 10px; color: var(--text2); margin-top: 4px; }
+.notif-empty { padding: 20px; text-align: center; font-size: 12px; color: var(--text2); }
+
+/* Quick Settings */
+.quick-settings { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 12px; }
+.qs-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 12px 4px; border-radius: 7px; cursor: pointer;
+  background: var(--card-bg); border: 1px solid var(--border);
+  font-size: 18px; color: var(--text); transition: all var(--transition);
+}
+.qs-btn span { font-size: 10px; }
+.qs-btn:hover { background: var(--hover); }
+.qs-btn.active { background: rgba(0,120,212,.15); color: var(--accent); border-color: rgba(0,120,212,.3); }
+.qs-sliders { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
+.qs-slider-row { display: flex; align-items: center; gap: 10px; color: var(--text); }
+.qs-slider-row i { width: 20px; text-align: center; }
+.qs-slider-row input[type=range] { flex: 1; accent-color: var(--accent); cursor: pointer; }

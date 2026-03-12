@@ -1,0 +1,45 @@
+/* ===== TERMINAL ===== */
+.terminal { display: flex; flex-direction: column; height: 100%; background: #0c0c0c; }
+.terminal-tabs { display: flex; background: #191919; border-bottom: 1px solid #333; overflow-x: auto; flex-shrink: 0; }
+.terminal-tab { display: flex; align-items: center; gap: 7px; padding: 7px 14px; font-size: 12px; color: #999; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all var(--transition); }
+.terminal-tab:hover { background: #252525; color: #ccc; }
+.terminal-tab.active { border-bottom-color: var(--accent); color: #fff; background: #0c0c0c; }
+.terminal-tab .tab-close { font-size: 11px; opacity: .4; padding: 2px; border-radius: 3px; }
+.terminal-tab .tab-close:hover { opacity: 1; background: rgba(255,255,255,.1); }
+.terminal-tab-add { padding: 7px 12px; font-size: 14px; color: #555; cursor: pointer; border: none; background: transparent; }
+.terminal-tab-add:hover { color: #999; }
+.terminal-output {
+  flex: 1; padding: 12px 14px; font-family: 'Cascadia Code', 'Consolas', monospace;
+  font-size: 13px; line-height: 1.5; color: #ccc; overflow-y: auto;
+  white-space: pre-wrap; word-break: break-all;
+}
+.terminal-output .prompt { color: #4fc3f7; }
+.terminal-output .prompt-host { color: #81c784; }
+.terminal-output .prompt-sep { color: #aaa; }
+.terminal-output .prompt-path { color: #ce93d8; }
+.terminal-output .cmd-text { color: #ffffff; }
+.terminal-output .output-text { color: #ccc; }
+.terminal-output .error-text { color: #ef5350; }
+.terminal-output .success-text { color: #66bb6a; }
+.terminal-output .info-text { color: #42a5f5; }
+.terminal-output .warn-text { color: #ffa726; }
+.terminal-input-line { display: flex; align-items: center; padding: 0 14px 12px; background: #0c0c0c; flex-shrink: 0; gap: 8px; }
+.terminal-prompt-display { font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 13px; white-space: nowrap; }
+.terminal-prompt-display .p-user { color: #81c784; }
+.terminal-prompt-display .p-at { color: #aaa; }
+.terminal-prompt-display .p-host { color: #81c784; }
+.terminal-prompt-display .p-colon { color: #aaa; }
+.terminal-prompt-display .p-path { color: #ce93d8; }
+.terminal-prompt-display .p-dollar { color: #4fc3f7; }
+.terminal-input {
+  flex: 1; background: transparent; border: none; color: #fff;
+  font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 13px;
+  outline: none; caret-color: #fff;
+}
+.terminal-autocomplete {
+  position: absolute; background: #1e1e1e; border: 1px solid #444;
+  border-radius: 5px; padding: 4px; z-index: 10;
+  max-height: 140px; overflow-y: auto; box-shadow: 0 4px 16px rgba(0,0,0,.5);
+}
+.terminal-autocomplete div { padding: 5px 10px; font-size: 12px; color: #ccc; cursor: pointer; border-radius: 3px; font-family: 'Cascadia Code','Consolas',monospace; }
+.terminal-autocomplete div:hover, .terminal-autocomplete div.selected { background: #2a2a2a; color: #fff; }

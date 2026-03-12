@@ -1,0 +1,104 @@
+/* ===== TASKBAR ===== */
+.taskbar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 48px;
+  background: var(--taskbar-bg); backdrop-filter: blur(32px) saturate(1.6);
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 500; border-top: 1px solid var(--glass-border);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.taskbar.auto-hide { transform: translateY(100%); }
+.taskbar.auto-hide:hover, .taskbar.auto-hide.show { transform: translateY(0); }
+
+.taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 2px; padding: 0 6px; flex-shrink: 0; }
+.taskbar-center { display: flex; align-items: center; gap: 1px; flex: 1; justify-content: center; }
+.taskbar-center.align-left { justify-content: flex-start; padding-left: 8px; }
+
+/* Taskbar buttons */
+.taskbar-btn {
+  height: 40px; min-width: 40px; border: none;
+  background: transparent; color: var(--text);
+  font-size: 16px; border-radius: 6px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; padding: 0 10px;
+  transition: background var(--transition);
+}
+.taskbar-btn:hover { background: var(--hover); }
+.taskbar-btn:active { background: var(--active); }
+.taskbar-btn.active::after {
+  content: ''; position: absolute; bottom: 3px; left: 50%;
+  transform: translateX(-50%); width: 18px; height: 3px;
+  background: var(--accent); border-radius: 2px;
+}
+.taskbar-btn.running::before {
+  content: ''; position: absolute; bottom: 3px; left: 50%;
+  transform: translateX(-50%); width: 5px; height: 3px;
+  background: var(--text2); border-radius: 2px;
+}
+.taskbar-btn.active.running::before { display: none; }
+
+/* Win logo */
+.win-logo-small { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5px; width: 16px; height: 16px; }
+.win-block-sm { border-radius: 1px; }
+.win-block-sm.b1 { background: #f25022; } .win-block-sm.b2 { background: #7fba00; }
+.win-block-sm.b3 { background: #00a4ef; } .win-block-sm.b4 { background: #ffb900; }
+
+/* Clock */
+.taskbar-clock {
+  display: flex; flex-direction: column; align-items: flex-end;
+  padding: 0 10px; cursor: pointer; border-radius: 6px;
+  line-height: 1.4; transition: background var(--transition);
+}
+.taskbar-clock:hover { background: var(--hover); }
+.clock-time { font-size: 12.5px; color: var(--text); font-weight: 400; }
+.clock-date { font-size: 11px; color: var(--text); }
+
+/* Show desktop btn */
+.show-desktop-btn {
+  width: 8px !important; min-width: 8px !important;
+  height: 100%; border-radius: 0 !important; padding: 0 !important;
+  border-left: 1px solid var(--border); margin-left: 2px;
+}
+
+/* System tray */
+.systray {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 10px; border-radius: 6px; font-size: 13px;
+  color: var(--text); cursor: pointer; position: relative;
+  transition: background var(--transition);
+}
+.systray:hover { background: var(--hover); }
+.systray-badge {
+  position: absolute; top: 2px; right: 2px;
+  background: var(--accent); color: #fff; font-size: 9px;
+  border-radius: 8px; min-width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center; padding: 0 3px;
+}
+.systray-badge.hidden { display: none; }
+.systray-expanded {
+  position: absolute; bottom: 52px; right: 60px;
+  background: var(--menu-bg); backdrop-filter: blur(24px);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 8px; display: flex; gap: 4px;
+  box-shadow: var(--shadow-lg); animation: ctxIn 0.12s ease;
+}
+.systray-expanded.hidden { display: none; }
+.systray-expand-btn { font-size: 10px !important; min-width: 28px !important; }
+
+/* Thumbnail preview */
+.thumbnail-preview {
+  position: fixed; bottom: 56px;
+  background: var(--menu-bg); backdrop-filter: blur(24px);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 10px; box-shadow: var(--shadow-lg); z-index: 501;
+  min-width: 180px; max-width: 240px;
+  animation: slideUp 0.15s ease;
+}
+.thumbnail-preview .thumb-img {
+  width: 100%; height: 110px; background: var(--bg2);
+  border-radius: 5px; display: flex; align-items: center;
+  justify-content: center; font-size: 28px; color: var(--text2);
+}
+.thumbnail-preview .thumb-title {
+  font-size: 11px; color: var(--text); margin-top: 6px;
+  text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}

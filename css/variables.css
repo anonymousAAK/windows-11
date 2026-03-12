@@ -1,0 +1,55 @@
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+  --accent: #0078d4;
+  --accent-light: #60cdff;
+  --accent-dark: #005a9e;
+  --bg: #f3f3f3;
+  --bg2: #ffffff;
+  --text: #1a1a1a;
+  --text2: #616161;
+  --hover: rgba(0,0,0,.05);
+  --active: rgba(0,0,0,.08);
+  --border: rgba(0,0,0,.08);
+  --shadow: 0 4px 20px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.08);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.1);
+  --card-bg: rgba(255,255,255,.75);
+  --glass: rgba(249,249,249,.92);
+  --glass-border: rgba(255,255,255,.6);
+  --taskbar-bg: rgba(243,243,243,.88);
+  --menu-bg: rgba(249,249,249,.95);
+  --win-bg: #ffffff;
+  --win-titlebar: #f9f9f9;
+  --title-text: #1a1a1a;
+  --input-bg: rgba(255,255,255,.85);
+  --input-border: rgba(0,0,0,.12);
+  --scrollbar: #d0d0d0;
+  --scrollbar-hover: #b0b0b0;
+  --focus-ring: rgba(0,120,212,.4);
+  --radius: 8px;
+  --radius-sm: 4px;
+  --transition: 0.15s ease;
+}
+
+body.dark {
+  --bg: #202020;
+  --bg2: #2d2d2d;
+  --text: #ffffff;
+  --text2: #ababab;
+  --hover: rgba(255,255,255,.06);
+  --active: rgba(255,255,255,.1);
+  --border: rgba(255,255,255,.09);
+  --shadow: 0 4px 20px rgba(0,0,0,.45), 0 1px 4px rgba(0,0,0,.3);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,.6);
+  --card-bg: rgba(45,45,45,.8);
+  --glass: rgba(32,32,32,.92);
+  --glass-border: rgba(255,255,255,.12);
+  --taskbar-bg: rgba(28,28,28,.92);
+  --menu-bg: rgba(38,38,38,.97);
+  --win-bg: #2d2d2d;
+  --win-titlebar: #323232;
+  --title-text: #ffffff;
+  --input-bg: rgba(255,255,255,.07);
+  --input-border: rgba(255,255,255,.12);
+  --scrollbar: #555;
+  --scrollbar-hover: #777;
+}

@@ -1,0 +1,61 @@
+/* ===== DESKTOP ===== */
+#desktop {
+  display: flex; flex-direction: column;
+  background-size: cover; background-position: center;
+  background-color: #1a1a2e; z-index: 1;
+  transition: background 0.6s ease;
+}
+.desktop-area {
+  flex: 1; position: relative; overflow: hidden;
+  padding: 8px; padding-bottom: 56px; /* avoid taskbar */
+}
+
+/* ===== DESKTOP ICONS ===== */
+.desktop-icon {
+  position: absolute; width: 80px;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 8px 4px; border-radius: var(--radius);
+  cursor: pointer; text-align: center;
+  transition: background var(--transition), transform 0.12s;
+}
+.desktop-icon:hover { background: rgba(255,255,255,.14); transform: translateY(-2px); }
+.desktop-icon.selected { background: rgba(0,120,212,.3); outline: 1px solid rgba(0,120,212,.5); }
+.desktop-icon.dragging { opacity: .45; transform: scale(1.05); pointer-events: none; }
+.desktop-icon .icon { font-size: 34px; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.5); pointer-events: none; }
+.desktop-icon .icon-label {
+  font-size: 11.5px; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.8);
+  word-break: break-word; line-height: 1.25; max-width: 76px; pointer-events: none;
+}
+.desktop-icon .icon-label[contenteditable=true] {
+  background: var(--accent); color: #fff; outline: none;
+  padding: 1px 5px; border-radius: 3px; text-shadow: none; cursor: text;
+}
+/* Size variants */
+.icon-size-small .desktop-icon { width: 58px; }
+.icon-size-small .desktop-icon .icon { font-size: 22px; }
+.icon-size-small .desktop-icon .icon-label { font-size: 10px; }
+.icon-size-large .desktop-icon { width: 100px; }
+.icon-size-large .desktop-icon .icon { font-size: 46px; }
+.icon-size-large .desktop-icon .icon-label { font-size: 13px; }
+
+/* ===== CONTEXT MENUS ===== */
+.context-menu {
+  position: fixed; background: var(--menu-bg);
+  backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 5px; min-width: 220px;
+  box-shadow: var(--shadow-lg); z-index: 9000;
+  animation: ctxIn 0.12s ease;
+  transform-origin: top left;
+}
+.context-menu.hidden { display: none; }
+.ctx-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 14px; font-size: 13px; color: var(--text);
+  border-radius: 6px; cursor: pointer;
+  transition: background var(--transition);
+}
+.ctx-item:hover { background: var(--hover); }
+.ctx-item:active { background: var(--active); }
+.ctx-item i { width: 16px; text-align: center; opacity: .65; }
+.ctx-separator { height: 1px; background: var(--border); margin: 4px 10px; }

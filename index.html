@@ -268,7 +268,55 @@
     </div>
   </div>
 
-  <script src="apps.js"></script>
-  <script src="script.js"></script>
+  <!-- === MODULAR JS === -->
+  <!-- Core: OS state -->
+  <script src="js/core/state.js"></script>
+  <!-- Core: Virtual File System -->
+  <script src="js/core/vfs.js"></script>
+  <!-- Core: Settings API (accent, dark mode, wallpaper, brightness) -->
+  <script src="js/core/settings-api.js"></script>
+  <!-- Core: Toast & Notification Center -->
+  <script src="js/core/notifications.js"></script>
+
+  <!-- Apps: individual app init functions -->
+  <script src="js/apps/explorer.js"></script>
+  <script src="js/apps/notepad.js"></script>
+  <script src="js/apps/calculator.js"></script>
+  <script src="js/apps/terminal.js"></script>
+  <script src="js/apps/edge.js"></script>
+  <script src="js/apps/settings-app.js"></script>
+  <script src="js/apps/music.js"></script>
+  <script src="js/apps/video.js"></script>
+  <script src="js/apps/calendar.js"></script>
+  <script src="js/apps/mail.js"></script>
+  <script src="js/apps/sticky-notes.js"></script>
+  <script src="js/apps/snipping-tool.js"></script>
+  <script src="js/apps/task-manager.js"></script>
+  <script src="js/apps/clock.js"></script>
+  <script src="js/apps/todo.js"></script>
+  <script src="js/apps/whiteboard.js"></script>
+  <script src="js/apps/registry-editor.js"></script>
+  <script src="js/apps/control-panel.js"></script>
+  <script src="js/apps/disk-cleanup.js"></script>
+  <script src="js/apps/games/minesweeper.js"></script>
+  <script src="js/apps/games/snake.js"></script>
+
+  <!-- Apps: APP_DEFS registry (must come after all app init functions) -->
+  <script src="js/apps/registry.js"></script>
+
+  <!-- Core: Window manager (depends on APP_DEFS) -->
+  <script src="js/core/window-manager.js"></script>
+  <!-- Core: Taskbar (depends on APP_DEFS + window-manager) -->
+  <script src="js/core/taskbar.js"></script>
+  <!-- Core: Desktop icons & context menus -->
+  <script src="js/core/desktop.js"></script>
+  <!-- Core: Start menu, search, widgets -->
+  <script src="js/core/start-menu.js"></script>
+  <!-- Core: Task view, virtual desktops, Alt+Tab -->
+  <script src="js/core/overlays.js"></script>
+  <!-- Core: Keyboard shortcuts & panel management -->
+  <script src="js/core/shortcuts.js"></script>
+  <!-- Core: Boot, login, power, BSOD (must be last — sets up DOMContentLoaded) -->
+  <script src="js/core/boot.js"></script>
 </body>
 </html>

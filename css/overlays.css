@@ -1,0 +1,77 @@
+/* ===== ALT+TAB OVERLAY ===== */
+.alt-tab-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.55); backdrop-filter: blur(24px);
+  z-index: 9000; display: flex; align-items: center; justify-content: center;
+  animation: fadeIn 0.15s ease;
+}
+.alt-tab-overlay.hidden { display: none; }
+.alt-tab-grid { display: flex; gap: 14px; padding: 24px; flex-wrap: wrap; justify-content: center; max-width: 85vw; }
+.alt-tab-item {
+  width: 210px; background: var(--card-bg);
+  border: 2px solid transparent; border-radius: var(--radius);
+  padding: 10px; cursor: pointer;
+  transition: border-color var(--transition), transform 0.12s;
+}
+.alt-tab-item:hover { border-color: rgba(255,255,255,.3); transform: scale(1.02); }
+.alt-tab-item.selected { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,120,212,.4); }
+.alt-tab-item .at-preview {
+  height: 120px; background: var(--bg2); border-radius: 5px;
+  margin-bottom: 8px; display: flex; align-items: center;
+  justify-content: center; font-size: 32px; color: var(--text2); overflow: hidden;
+}
+.alt-tab-item .at-title { font-size: 12px; color: var(--text); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ===== TASK VIEW ===== */
+.task-view {
+  position: fixed; inset: 0; background: rgba(0,0,0,.65);
+  backdrop-filter: blur(24px); z-index: 800;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+.task-view.hidden { display: none; }
+.task-view-windows { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; padding: 20px; max-width: 90vw; }
+.tv-window-item {
+  width: 250px; height: 165px; background: var(--card-bg);
+  border: 2px solid transparent; border-radius: var(--radius);
+  cursor: pointer; display: flex; flex-direction: column; overflow: hidden;
+  transition: border-color var(--transition), transform 0.12s;
+}
+.tv-window-item:hover, .tv-window-item.selected { border-color: var(--accent); transform: translateY(-3px); }
+.tv-window-item .tv-preview { flex: 1; background: var(--bg2); display: flex; align-items: center; justify-content: center; font-size: 36px; color: var(--text2); }
+.tv-window-item .tv-title { padding: 7px; font-size: 11px; color: var(--text); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tv-close { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; background: rgba(0,0,0,.5); border: none; border-radius: 50%; color: #fff; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--transition); }
+.tv-window-item:hover .tv-close { opacity: 1; }
+
+/* Virtual desktops bar */
+.task-view-desktops { position: absolute; bottom: 28px; display: flex; align-items: center; gap: 14px; }
+.vd-label { color: rgba(255,255,255,.7); font-size: 13px; }
+.vd-list { display: flex; gap: 10px; }
+.vd-thumb {
+  width: 130px; height: 76px; background: rgba(255,255,255,.1);
+  border: 2px solid transparent; border-radius: 7px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.5); font-size: 12px; position: relative;
+  transition: all var(--transition);
+}
+.vd-thumb:hover { background: rgba(255,255,255,.18); }
+.vd-thumb.active { border-color: var(--accent); background: rgba(0,120,212,.15); color: rgba(255,255,255,.8); }
+.vd-thumb-close { position: absolute; top: 3px; right: 5px; color: rgba(255,255,255,.6); font-size: 11px; cursor: pointer; display: none; }
+.vd-thumb:hover .vd-thumb-close { display: block; }
+.vd-add {
+  background: rgba(255,255,255,.1); border: 2px dashed rgba(255,255,255,.3);
+  color: rgba(255,255,255,.7); padding: 8px 18px; border-radius: 7px; cursor: pointer;
+  font-size: 12px; display: flex; align-items: center; gap: 8px;
+  transition: all var(--transition);
+}
+.vd-add:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.5); }
+
+/* Virtual desktop indicator */
+.vdesktop-indicator {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.75); backdrop-filter: blur(12px);
+  color: #fff; padding: 18px 40px; border-radius: 12px;
+  font-size: 20px; font-weight: 500; z-index: 9500;
+  pointer-events: none; animation: scaleIn 0.2s ease;
+}
+.vdesktop-indicator.hidden { display: none; }
