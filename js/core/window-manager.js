@@ -156,12 +156,21 @@ function setupWindowDrag(el, winId) {
         el.style.left = Math.max(0, startLeft + dx) + 'px';
         el.style.top = Math.max(0, startTop + dy) + 'px';
         checkSnapZone(ev.clientX, ev.clientY);
-        if (Math.abs(dx) > 200 && Math.abs(dy) < 30) checkAeroShake(winId);
+        // Track direction reversals for Aero Shake
+        if (!el._lastDragX) el._lastDragX = ev.clientX;
+        const dir = ev.clientX - el._lastDragX;
+        if (!el._lastDragDir) el._lastDragDir = dir;
+        if ((dir > 0 && el._lastDragDir < 0) || (dir < 0 && el._lastDragDir > 0)) {
+          checkAeroShake(winId);
+        }
+        if (dir !== 0) el._lastDragDir = dir;
+        el._lastDragX = ev.clientX;
       }
     };
     const onUp = ev => {
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
+      el._lastDragX = null; el._lastDragDir = null;
       if (dragging) applySnap(winId, ev.clientX, ev.clientY);
       hideSnapPreview();
     };
@@ -314,7 +323,19 @@ function setupWindowResize(el, winId) {
 }
 
 // ===== AERO SHAKE =====
+let _shakeHistory = [];
 function checkAeroShake(activeId) {
-  const others = [...OS.windows.values()].filter(w => w.id !== activeId && !w.minimized);
-  if (others.length > 0) others.forEach(w => minimizeWindow(w.id));
+  const now = Date.now();
+  const last = _shakeHistory[_shakeHistory.length - 1];
+  // Track direction reversals within a short time window
+  _shakeHistory.push(now);
+  _shakeHistory = _shakeHistory.filter(t => now - t < 600);
+  // Require at least 3 rapid direction changes (real shake gesture)
+  if (_shakeHistory.length < 4) return;
+  const others = [...OS.windows.values()].filter(w => w.id !== activeId && !w.minimized && w.desktop === OS.currentDesktop);
+  if (others.length > 0) {
+    others.forEach(w => minimizeWindow(w.id));
+    showToast('Aero Shake', 'Other windows minimized');
+  }
+  _shakeHistory = [];
 }

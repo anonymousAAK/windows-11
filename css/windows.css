@@ -5,7 +5,7 @@
   display: flex; flex-direction: column;
   min-width: 380px; min-height: 260px;
   overflow: hidden; border: 1px solid var(--glass-border);
-  animation: windowOpen 0.18s cubic-bezier(0.2, 0, 0.2, 1);
+  animation: windowOpen 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 .window.maximized { border-radius: 0 !important; box-shadow: none !important; border: none !important; }

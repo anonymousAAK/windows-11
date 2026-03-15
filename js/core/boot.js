@@ -44,12 +44,22 @@ function showLoginScreen() {
 }
 
 function login() {
-  document.getElementById('login-screen').classList.remove('active');
-  document.getElementById('desktop').classList.add('active');
-  loadDesktop();
+  const loginScreen = document.getElementById('login-screen');
+  const desktop = document.getElementById('desktop');
+  loginScreen.style.transition = 'opacity 0.4s ease';
+  loginScreen.style.opacity = '0';
   setTimeout(() => {
-    showToast('Windows 11', 'Welcome back, User!', ['View notifications']);
-  }, 800);
+    loginScreen.classList.remove('active');
+    loginScreen.style.opacity = '';
+    loginScreen.style.transition = '';
+    desktop.classList.add('active');
+    desktop.style.animation = 'fadeIn 0.5s ease';
+    loadDesktop();
+    setTimeout(() => {
+      showToast('Windows 11', 'Welcome back, User!', ['View notifications']);
+      desktop.style.animation = '';
+    }, 800);
+  }, 350);
 }
 
 function loadDesktop() {
@@ -66,12 +76,20 @@ function hideCad() { document.getElementById('cad-screen').classList.remove('act
 // ===== POWER =====
 function shutDown() {
   closeAllPanels(); hideCad();
+  const desktop = document.getElementById('desktop');
   const ss = document.getElementById('shutdown-screen');
   const st = document.getElementById('shutdown-text');
-  ss.classList.add('active');
-  if (st) st.textContent = 'Shutting down...';
+  // Fade out desktop first
+  desktop.style.transition = 'opacity 0.6s ease';
+  desktop.style.opacity = '0';
   setTimeout(() => {
-    document.getElementById('desktop').classList.remove('active');
+    desktop.classList.remove('active');
+    desktop.style.opacity = ''; desktop.style.transition = '';
+    // Close all windows
+    OS.windows.forEach((w, id) => { w.el.remove(); });
+    OS.windows.clear(); OS.activeWindow = null;
+    ss.classList.add('active');
+    if (st) st.textContent = 'Shutting down...';
     setTimeout(() => {
       document.getElementById('boot-screen').classList.add('active');
       ss.classList.remove('active');
@@ -79,8 +97,8 @@ function shutDown() {
         document.getElementById('boot-screen').classList.remove('active');
         document.getElementById('lock-screen').classList.add('active');
       }, 2200);
-    }, 500);
-  }, 1500);
+    }, 1200);
+  }, 600);
 }
 
 function restartPC() {

@@ -51,7 +51,7 @@ function updateTaskbarApps() {
   container.innerHTML = windows.map(w => {
     const app = APP_DEFS[w.appId];
     const active = w.id === OS.activeWindow && !w.minimized;
-    return `<button class="taskbar-btn ${active ? 'active' : ''}" id="tb-app-${w.id}"
+    return `<button class="taskbar-btn ${active ? 'active' : 'running'}" id="tb-app-${w.id}"
       title="${w.title}"
       onclick="toggleWindowFromTaskbar(${w.id})"
       onmouseenter="showThumbnail(event,'',${w.id})"

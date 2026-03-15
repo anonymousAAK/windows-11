@@ -5,9 +5,10 @@
   backdrop-filter: blur(44px) saturate(1.8);
   border: 1px solid var(--glass-border); border-radius: 12px;
   box-shadow: var(--shadow-lg); z-index: 600;
-  animation: menuOpen 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+  animation: menuOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .start-menu.hidden { display: none; }
+.start-menu.align-left { left: 8px; transform: none; animation-name: slideUp; }
 .start-menu-inner { padding: 24px 28px 14px; }
 
 /* Start search */
@@ -126,7 +127,7 @@
   color: var(--text); font-size: 14px; outline: none;
   transition: border-color var(--transition);
 }
-.search-header input:focus { border-color: var(--accent); }
+.search-header input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus-ring); }
 .search-results { max-height: 420px; overflow-y: auto; margin-top: 14px; }
 .search-result-item {
   display: flex; align-items: center; gap: 14px;
