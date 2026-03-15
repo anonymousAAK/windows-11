@@ -6,7 +6,8 @@ function showToast(title, body, actions) {
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `<div class="toast-title">${title}</div><div class="toast-body">${body}</div>
-    ${actions ? `<div class="toast-actions">${actions.map(a => `<button onclick="this.closest('.toast').remove()">${a}</button>`).join('')}</div>` : ''}`;
+    ${actions ? `<div class="toast-actions">${actions.map(a => `<button onclick="this.closest('.toast').remove()">${a}</button>`).join('')}</div>` : ''}
+    <div class="toast-progress"></div>`;
   container.appendChild(toast);
   toast.addEventListener('click', () => toast.remove());
   OS.notifications.push({ title, body, time: new Date().toLocaleTimeString() });
